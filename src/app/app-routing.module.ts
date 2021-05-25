@@ -7,8 +7,8 @@ import { LearnerCreateComponent } from './components/learner-create/learner-crea
 
 const routes: Routes = [
   { path: '', redirectTo: 'learners', pathMatch: 'full' },
-  { path: 'products', component: LearnerListComponent },
-  { path: 'products/:id', component: LearnerDetailsComponent },
+  { path: 'learners', component: LearnerListComponent },
+  { path: 'learners/:id', component: LearnerDetailsComponent },
   { path: 'create', component: LearnerCreateComponent }
 ];
 
