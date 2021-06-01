@@ -1,1 +1,36 @@
 <p>learner-create works!</p>
+<div style="width: 500px; margin: auto;">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="learner.name"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input 
+          class="form-control"
+          id="description"
+          required
+          [(ngModel)]="learner.description"
+          name="description"
+        />
+      </div>
+
+      <button (click)="createLearner()" class="btn btn-success">Create</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h3>You successfully created a learner!</h3>
+      <button class="btn btn-success" (click)="newLearner()">New..</button>
+    </div>
+  </div>
+</div>

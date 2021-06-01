@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LearnerService } from 'src/app/services/learner.service';
 
 @Component({
   selector: 'app-learner-create',
@@ -6,10 +7,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./learner-create.component.css']
 })
 export class LearnerCreateComponent implements OnInit {
+  learner = {
+    name: '',
+    description: '',
+    available: false
+  };
+  submitted = false;
 
-  constructor() { }
+  constructor(private learnerService: LearnerService) { }
 
   ngOnInit(): void {
   }
 
+  createProduct(): void {
+    const data = {
+      name: this.learner.name,
+      description: this.learner.description
+    };
+
+    this.learnerService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  newLearner(): void {
+    this.submitted = false;
+    this.learner = {
+      name: '',
+      description: '',
+      available: false
+    };
+  }
 }
