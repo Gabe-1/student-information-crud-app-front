@@ -8,7 +8,7 @@ import { LearnerService } from 'src/app/services/learner.service';
 })
 export class LearnerListComponent implements OnInit {
 
-  learners: any;
+  learners: any[] = [];
   currentLearner = null;
   currentIndex = -1;
   name = '';
@@ -38,7 +38,7 @@ export class LearnerListComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-  setCurrentLearner(learner, index): void {
+  setCurrentLearner(learner: any, index: number): void {
     this.currentLearner = learner;
     this.currentIndex = index;
   }

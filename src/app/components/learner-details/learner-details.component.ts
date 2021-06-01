@@ -3,13 +3,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { LearnerService } from 'src/app/services/learner.service';
 
+interface Learner {
+  name: string,
+  description?: string,
+  available: boolean,
+  id: number
+}
+
 @Component({
   selector: 'app-learner-details',
   templateUrl: './learner-details.component.html',
   styleUrls: ['./learner-details.component.css']
 })
 export class LearnerDetailsComponent implements OnInit {
-  currentLearner = null;
+  currentLearner: Learner | any = undefined;
   message = '';
 
   constructor(
@@ -22,7 +29,7 @@ export class LearnerDetailsComponent implements OnInit {
     this.getLearner(this.route.snapshot.paramMap.get('id'));
   }
 
-  getLearner(id): void {
+  getLearner(id: any): void {
     this.learnerService.read(id)
       .subscribe(
         learner => {
@@ -35,7 +42,7 @@ export class LearnerDetailsComponent implements OnInit {
       );
   }
 
-  setAvailableStatus(status): void {
+  setAvailableStatus(status: boolean): void {
     const data = {
       name: this.currentLearner.name,
       description: this.currentLearner.description,
@@ -47,6 +54,19 @@ export class LearnerDetailsComponent implements OnInit {
         response => {
           this.currentLearner.available = status;
           console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  updateLearner(): void {
+    this.learnerService.update(this.currentLearner.id, this.currentLearner)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.message = 'The learner was updated!';
         },
         error => {
           console.log(error);

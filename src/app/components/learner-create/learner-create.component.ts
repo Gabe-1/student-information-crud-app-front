@@ -19,7 +19,7 @@ export class LearnerCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createProduct(): void {
+  createLearner(): void {
     const data = {
       name: this.learner.name,
       description: this.learner.description

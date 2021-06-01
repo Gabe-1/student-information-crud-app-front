@@ -1,15 +1,14 @@
-<p>learner-list works!</p>
 <div class="list row">
   <div class="col-md-8">
     <div class="input-group mb-4">
-      <input 
+      <input
         type="text"
         class="form-control"
         placeholder="Search by name"
         [(ngModel)]="name"
       />
       <div class="input-group-append">
-        <button 
+        <button
           class="btn btn-outline-secondary"
           type="button"
           (click)="searchByName()"
@@ -22,16 +21,16 @@
   <div class="col-md-6">
     <h4>Learner List</h4>
     <ul class="list-group">
-      <li 
+      <li
         class="list-group-item"
         *ngFor="let learner of learners; let i = index"
         [class.active]="i == currentIndex"
         (click)="setCurrentLearner(learner, i)"
       >
-    
+
       </li>
     </ul>
-  
+
     <button class="m-4 btn btn-sm btn-danger" (click)="deleteAllLearners()">
       Delete All
     </button>
@@ -44,18 +43,18 @@
       </div>
       <div>
         <label><strong>Description</strong></label>
-  
+
       </div>
       <div>
         <label><strong>Status:</strong></label>
-  
+
       </div>
-  
+
       <a class="badge badge-warning" routerLink="/learners/">
         Edit
       </a>
     </div>
-  
+
     <div *ngIf="!currentLearner">
       <br />
       <p>Please click on a Learner</p>
