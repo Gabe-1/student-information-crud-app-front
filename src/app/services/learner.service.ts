@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NumberValueAccessor } from '@angular/forms';
 
 const baseURL = 'http://localhost:3000';
+
+const headerDict = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Access-Control-Allow-Headers': 'Content-Type',
+}
+
+const requestOptions = {
+  headers: new HttpHeaders(headerDict),
+};
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +23,15 @@ export class LearnerService {
   constructor(private httpClient: HttpClient) { }
 
   readAll(): Observable<any> {
-    return this.httpClient.get(baseURL);
+    return this.httpClient.get(`${baseURL}/learners`, requestOptions);
   }
 
   read(id: NumberValueAccessor): Observable<any> {
-    return this.httpClient.get(`${baseURL}/${id}`);
+    return this.httpClient.get(`${baseURL}/${id}`, requestOptions);
   }
 
   create(data: any): Observable<any> {
-    return this.httpClient.post(baseURL, data);
+    return this.httpClient.post(baseURL, data, requestOptions);
   }
 
   update(id: number, data: any): Observable<any> {
@@ -37,6 +47,6 @@ export class LearnerService {
   }
 
   searchByName(name: string): Observable<any> {
-    return this.httpClient.get(`${baseURL}?name=${name}`);
+    return this.httpClient.get(`${baseURL}?name=${name}`, requestOptions);
   }
 }
