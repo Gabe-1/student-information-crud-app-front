@@ -5,7 +5,8 @@ import { LearnerService } from 'src/app/services/learner.service';
 
 interface Learner {
   name: string,
-  description?: string,
+  email: string,
+  courseId: 0,
   available: boolean,
   id: number
 }
@@ -26,11 +27,11 @@ export class LearnerDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    this.getLearner(this.route.snapshot.paramMap.get('id'));
+    this.getLearner(this.route.snapshot.paramMap.get('courseId'));
   }
 
-  getLearner(id: any): void {
-    this.learnerService.read(id)
+  getLearner(courseId: any): void {
+    this.learnerService.read(courseId)
       .subscribe(
         learner => {
           this.currentLearner = learner;
@@ -44,8 +45,9 @@ export class LearnerDetailsComponent implements OnInit {
 
   setAvailableStatus(status: boolean): void {
     const data = {
-      name: this.currentLearner.name,
-      description: this.currentLearner.description,
+      learner_name: this.currentLearner.name,
+      learner_email: this.currentLearner.email,
+      course_Id: this.currentLearner.courseId,
       available: status
     };
 

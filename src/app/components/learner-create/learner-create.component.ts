@@ -9,7 +9,8 @@ import { LearnerService } from 'src/app/services/learner.service';
 export class LearnerCreateComponent implements OnInit {
   learner = {
     name: '',
-    description: '',
+    email: '',
+    courseId: 0,
     available: false
   };
   submitted = false;
@@ -21,8 +22,9 @@ export class LearnerCreateComponent implements OnInit {
 
   createLearner(): void {
     const data = {
-      name: this.learner.name,
-      description: this.learner.description
+      learner_name: this.learner.name,
+      learner_email: this.learner.email,
+      course_Id: this.learner.courseId
     };
 
     this.learnerService.create(data)
@@ -41,7 +43,8 @@ export class LearnerCreateComponent implements OnInit {
     this.submitted = false;
     this.learner = {
       name: '',
-      description: '',
+      email: '',
+      courseId: 0,
       available: false
     };
   }

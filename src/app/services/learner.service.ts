@@ -27,11 +27,11 @@ export class LearnerService {
   }
 
   read(id: NumberValueAccessor): Observable<any> {
-    return this.httpClient.get(`${baseURL}/${id}`, requestOptions);
+    return this.httpClient.get(`${baseURL}/learners/${id}`, requestOptions);
   }
 
   create(data: any): Observable<any> {
-    return this.httpClient.post(baseURL, data, requestOptions);
+    return this.httpClient.post(`${baseURL}/learners`, data, requestOptions);
   }
 
   update(id: number, data: any): Observable<any> {
@@ -47,6 +47,6 @@ export class LearnerService {
   }
 
   searchByName(name: string): Observable<any> {
-    return this.httpClient.get(`${baseURL}?name=${name}`, requestOptions);
+    return this.httpClient.get(`${baseURL}/learners?name=${name}`, requestOptions);
   }
 }

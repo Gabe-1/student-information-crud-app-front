@@ -13,18 +13,28 @@
         />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="email">Email:</label>
         <input
           type="text"
           class="form-control"
-          id="description"
-          [(ngModel)]="currentLearner.description"
-          name="description"
+          id="email"
+          [(ngModel)]="currentLearner.email"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="courseId">Course ID:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="courseId"
+          [(ngModel)]="currentLearner.course_Id"
+          name="courseId"
         />
       </div>
 
       <div class="form-group">
-        <label><strong>Status:</strong></label>
+        <label><strong>Status: </strong></label>
 
       </div>
     </form>

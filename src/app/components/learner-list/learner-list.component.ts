@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LearnerService } from 'src/app/services/learner.service';
 
+interface currentLearner {
+  learner_name: string,
+  learner_email: string,
+  course_Id: 0,
+  available: boolean,
+  learner_id: number
+}
 @Component({
   selector: 'app-learner-list',
   templateUrl: './learner-list.component.html',
@@ -9,7 +16,7 @@ import { LearnerService } from 'src/app/services/learner.service';
 export class LearnerListComponent implements OnInit {
 
   learners: any[] = [];
-  currentLearner = null;
+  currentLearner: any = {};
   currentIndex = -1;
   name = '';
 
@@ -34,7 +41,7 @@ export class LearnerListComponent implements OnInit {
 
   refresh(): void {
     this.readLearners();
-    this.currentLearner = null,
+    this.currentLearner = {},
     this.currentIndex = -1;
   }
 

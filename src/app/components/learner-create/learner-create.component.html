@@ -14,13 +14,24 @@
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="email">Email</label>
         <input
           class="form-control"
-          id="description"
+          id="email"
           required
-          [(ngModel)]="learner.description"
-          name="description"
+          [(ngModel)]="learner.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="courseId">Course ID</label>
+        <input
+          class="form-control"
+          id="courseId"
+          required
+          [(ngModel)]="learner.courseId"
+          name="courseId"
         />
       </div>
 

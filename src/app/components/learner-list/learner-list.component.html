@@ -27,7 +27,7 @@
         [class.active]="i == currentIndex"
         (click)="setCurrentLearner(learner, i)"
       >
-
+      {{learner.learner_name}}
       </li>
     </ul>
 
@@ -39,14 +39,18 @@
     <div *ngIf="currentLearner">
       <h4>Learner</h4>
       <div>
-        <label><strong>Name:</strong></label>
+        <label><strong>Name: </strong>{{currentLearner.learner_name}}</label>
       </div>
       <div>
-        <label><strong>Description</strong></label>
+        <label><strong>Email: </strong>{{currentLearner.learner_email}}</label>
 
       </div>
       <div>
-        <label><strong>Status:</strong></label>
+        <label><strong>Course ID: </strong>{{currentLearner["course_Id"]}}</label>
+
+      </div>
+      <div>
+        <label><strong>Status: </strong>{{currentLearner["available"]}}</label>
 
       </div>
 
