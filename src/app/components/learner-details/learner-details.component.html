@@ -40,7 +40,7 @@
     </form>
 
     <button
-    class="badge badge-primary mr-2"
+    class="badge bg-primary mr-2"
     *ngIf="currentLearner.available"
     (click)="setAvailableStatus(false)"
     >
@@ -48,19 +48,19 @@
     </button>
     <button
       *ngIf="!currentLearner.available"
-      class="badge badge-primary mr-2"
+      class="badge bg-primary mr-2"
       (click)="setAvailableStatus(true)"
     >
     Set Available
     </button>
 
-    <button class="badge badge-danger mr-2" (click)="deleteLearner()">
+    <button class="badge bg-danger mr-2" (click)="deleteLearner()">
       Delete
     </button>
 
     <button
       type="submit"
-      class="badge badge-success"
+      class="badge bg-success"
       (click)="updateLearner()"
     >
     Update
