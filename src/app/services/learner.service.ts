@@ -26,7 +26,7 @@ export class LearnerService {
     return this.httpClient.get(`${baseURL}/learners`, requestOptions);
   }
 
-  read(id: NumberValueAccessor): Observable<any> {
+  read(id: number): Observable<any> {
     return this.httpClient.get(`${baseURL}/learners/${id}`, requestOptions);
   }
 
@@ -38,12 +38,12 @@ export class LearnerService {
     return this.httpClient.put(`${baseURL}/${id}`, data);
   }
 
-  delete(id: SVGAnimatedNumberList): Observable<any> {
-    return this.httpClient.delete(`${baseURL}/${id}`);
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete(`${baseURL}/learners/${id}`);
   }
 
   deleteAll(): Observable<any> {
-    return this.httpClient.delete(`${baseURL}`);
+    return this.httpClient.delete(`${baseURL}/learners`);
   }
 
   searchByName(name: string): Observable<any> {

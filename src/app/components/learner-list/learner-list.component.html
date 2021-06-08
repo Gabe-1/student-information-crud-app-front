@@ -50,11 +50,11 @@
 
       </div>
       <div>
-        <label><strong>Status: </strong>{{currentLearner["available"]}}</label>
+        <label><strong>Status: </strong>{{currentLearner["available"] ? "Available" : "Not Available"}}</label>
 
       </div>
 
-      <a class="badge bg-warning" routerLink="/learners/">
+      <a class="badge bg-warning" *ngIf="currentLearner" [routerLink]="[currentLearner['learner_id']]">
         Edit
       </a>
     </div>

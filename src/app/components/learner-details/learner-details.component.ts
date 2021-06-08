@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LearnerService } from 'src/app/services/learner.service';
 
 interface Learner {
-  name: string,
-  email: string,
-  courseId: 0,
-  available: boolean,
-  id: number
+  learner_name: string;
+  learner_email: string;
+  course_Id: number;
+  available: boolean;
+  learner_id: number;
 }
 
 @Component({
@@ -17,7 +17,13 @@ interface Learner {
   styleUrls: ['./learner-details.component.css']
 })
 export class LearnerDetailsComponent implements OnInit {
-  currentLearner: Learner | any = undefined;
+  currentLearner: Learner = {
+    learner_name: '',
+    learner_email: '',
+    course_Id: 0,
+    available: false,
+    learner_id: 0
+  };
   message = '';
 
   constructor(
@@ -27,15 +33,18 @@ export class LearnerDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    this.getLearner(this.route.snapshot.paramMap.get('courseId'));
+    const id = this.route.snapshot.paramMap.get('id');
+    this.getLearner(id ? parseInt(id) : 0 );
+    console.log(id);
   }
 
-  getLearner(courseId: any): void {
-    this.learnerService.read(courseId)
+  getLearner(id: number): any {
+    this.learnerService.read(id)
       .subscribe(
         learner => {
-          this.currentLearner = learner;
+          this.currentLearner = learner[0];
           console.log(learner);
+          console.log(this.currentLearner);
         },
         error => {
           console.log(error);
@@ -45,13 +54,13 @@ export class LearnerDetailsComponent implements OnInit {
 
   setAvailableStatus(status: boolean): void {
     const data = {
-      learner_name: this.currentLearner.name,
-      learner_email: this.currentLearner.email,
-      course_Id: this.currentLearner.courseId,
+      learner_name: this.currentLearner.learner_name,
+      learner_email: this.currentLearner.learner_email,
+      course_Id: this.currentLearner.course_Id,
       available: status
     };
 
-    this.learnerService.update(this.currentLearner.id, data)
+    this.learnerService.update(this.currentLearner.learner_id, data)
       .subscribe(
         response => {
           this.currentLearner.available = status;
@@ -64,11 +73,12 @@ export class LearnerDetailsComponent implements OnInit {
   }
 
   updateLearner(): void {
-    this.learnerService.update(this.currentLearner.id, this.currentLearner)
+    this.learnerService.update(this.currentLearner.learner_id, this.currentLearner)
       .subscribe(
         response => {
           console.log(response);
           this.message = 'The learner was updated!';
+          this.router.navigate(['/learners']);
         },
         error => {
           console.log(error);
@@ -77,7 +87,7 @@ export class LearnerDetailsComponent implements OnInit {
   }
 
   deleteLearner(): void {
-    this.learnerService.delete(this.currentLearner.id)
+    this.learnerService.delete(this.currentLearner.learner_id)
       .subscribe(
         response => {
           console.log(response);

@@ -47,6 +47,7 @@ export class LearnerListComponent implements OnInit {
 
   setCurrentLearner(learner: any, index: number): void {
     this.currentLearner = learner;
+    console.log(learner);
     this.currentIndex = index;
   }
 
