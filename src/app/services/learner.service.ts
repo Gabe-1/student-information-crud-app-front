@@ -47,6 +47,6 @@ export class LearnerService {
   }
 
   searchByName(name: string): Observable<any> {
-    return this.httpClient.get(`${baseURL}/learners?name=${name}`, requestOptions);
+    return this.httpClient.get(`${baseURL}/learners-search/${name}`, requestOptions);
   }
 }
