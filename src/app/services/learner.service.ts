@@ -35,7 +35,7 @@ export class LearnerService {
   }
 
   update(id: number, data: any): Observable<any> {
-    return this.httpClient.put(`${baseURL}/${id}`, data);
+    return this.httpClient.put(`${baseURL}/learners/${id}`, data);
   }
 
   delete(id: number): Observable<any> {

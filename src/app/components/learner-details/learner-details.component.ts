@@ -7,7 +7,7 @@ interface Learner {
   learner_name: string;
   learner_email: string;
   course_Id: number;
-  available: boolean;
+  available: number;
   learner_id: number;
 }
 
@@ -21,7 +21,7 @@ export class LearnerDetailsComponent implements OnInit {
     learner_name: '',
     learner_email: '',
     course_Id: 0,
-    available: false,
+    available: 0,
     learner_id: 0
   };
   message = '';
@@ -52,24 +52,27 @@ export class LearnerDetailsComponent implements OnInit {
       );
   }
 
-  setAvailableStatus(status: boolean): void {
-    const data = {
-      learner_name: this.currentLearner.learner_name,
-      learner_email: this.currentLearner.learner_email,
-      course_Id: this.currentLearner.course_Id,
-      available: status
-    };
+  setAvailableStatus(status: number): void {
+    // const data = {
+    //   learner_name: this.currentLearner.learner_name,
+    //   learner_email: this.currentLearner.learner_email,
+    //   course_Id: this.currentLearner.course_Id,
+    //   available: status
+    // };
 
-    this.learnerService.update(this.currentLearner.learner_id, data)
-      .subscribe(
-        response => {
-          this.currentLearner.available = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.currentLearner.available = status;
+    console.log(this.currentLearner);
+
+    // this.learnerService.update(this.currentLearner.learner_id, this.currentLearner)
+    //   .subscribe(
+    //     response => {
+    //       this.currentLearner.available = status;
+    //       console.log(response);
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
   }
 
   updateLearner(): void {

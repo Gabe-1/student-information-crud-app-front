@@ -1,9 +1,9 @@
-<div style="width: 500px; margin: auto;">
+<div style="width: 500px; margin: auto">
   <div *ngIf="currentLearner" class="edit-form">
     <h4>Learner</h4>
     <form>
       <div class="form-group">
-        <label for="title">Name</label>
+        <label for="title">Name:</label>
         <input
           type="text"
           class="form-control"
@@ -34,42 +34,40 @@
       </div>
 
       <div class="form-group">
-        <label><strong>Status: </strong></label>
-
+        <label>
+          <strong>Status: </strong>
+          {{ currentLearner.available ? "Available" : "Not Available" }}
+        </label>
       </div>
     </form>
 
     <button
-    class="badge bg-primary mr-2"
-    *ngIf="currentLearner.available"
-    (click)="setAvailableStatus(false)"
+      class="badge bg-primary mr-2"
+      *ngIf="currentLearner.available"
+      (click)="setAvailableStatus(0)"
     >
-    Set Not Available
+      Set Not Available
     </button>
     <button
-      *ngIf="!currentLearner.available"
       class="badge bg-primary mr-2"
-      (click)="setAvailableStatus(true)"
+      *ngIf="!currentLearner.available"
+      (click)="setAvailableStatus(1)"
     >
-    Set Available
+      Set Available
     </button>
 
     <button class="badge bg-danger mr-2" (click)="deleteLearner()">
       Delete
     </button>
 
-    <button
-      type="submit"
-      class="badge bg-success"
-      (click)="updateLearner()"
-    >
-    Update
+    <button type="submit" class="badge bg-success" (click)="updateLearner()">
+      Update
     </button>
     <p></p>
   </div>
 
   <div *ngIf="!currentLearner">
     <br />
-    <p>This product is not accessible</p>
+    <p>This learner is not accessible</p>
   </div>
 </div>
